@@ -28,7 +28,7 @@ jobs:
 
       - name: Download SLF4J Fix
         run: |
-          mkdir -p dependency-check/lib/  # 确保目录存在
+          mkdir -p dependency-check/lib/
           wget https://repo1.maven.org/maven2/org/slf4j/slf4j-simple/1.7.36/slf4j-simple-1.7.36.jar
           mv slf4j-simple-1.7.36.jar dependency-check/lib/
           rm -f dependency-check/lib/logback-classic-1.2.11.jar
@@ -40,8 +40,7 @@ jobs:
 
       - name: Run scan with ODC
         run: |
-          dependency-check/bin/dependency-check.sh --project "bitcoin" --scan . --log odc.log \
-          -Djava.security.manager=allow --enableExperimental > ODC-report
+          dependency-check/bin/dependency-check.sh --project "bitcoin" --scan . --log odc.log > ODC-report
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
